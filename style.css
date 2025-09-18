@@ -4,25 +4,65 @@
     box-sizing: border-box;
 }
 
+:root {
+    --bg-color: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --text-color: #2c3e50;
+    --container-bg-color: #ffffff;
+    --header-bg-color: #2c3e50;
+    --header-text-color: #ffffff;
+    --primary-color: #3498db;
+    --primary-hover-color: #2980b9;
+    --button-text-color: #ffffff;
+    --danger-color: #e74c3c;
+    --danger-hover-color: #c0392b;
+    --textarea-border-color: #ecf0f1;
+    --footer-bg-color: #ecf0f1;
+    --footer-border-color: #bdc3c7;
+    --muted-text-color: #7f8c8d;
+    --saved-text-color: #27ae60;
+    --unsaved-text-color: #e74c3c;
+}
+
+body[data-theme="dark"] {
+    --bg-color: linear-gradient(135deg, #141e30 0%, #243b55 100%);
+    --text-color: #f5f7fa;
+    --container-bg-color: #1f2933;
+    --header-bg-color: #1a202c;
+    --header-text-color: #f5f7fa;
+    --primary-color: #4aa3ff;
+    --primary-hover-color: #1e7bd6;
+    --button-text-color: #0b1120;
+    --danger-color: #ff6b6b;
+    --danger-hover-color: #d64545;
+    --textarea-border-color: #334155;
+    --footer-bg-color: #1f2933;
+    --footer-border-color: #334155;
+    --muted-text-color: #94a3b8;
+    --saved-text-color: #2dd4bf;
+    --unsaved-text-color: #f87171;
+}
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: var(--bg-color);
+    color: var(--text-color);
     min-height: 100vh;
     padding: 20px;
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
 .container {
     max-width: 800px;
     margin: 0 auto;
-    background: white;
+    background: var(--container-bg-color);
     border-radius: 10px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     overflow: hidden;
 }
 
 header {
-    background: #2c3e50;
-    color: white;
+    background: var(--header-bg-color);
+    color: var(--header-text-color);
     padding: 20px;
 }
 
@@ -41,15 +81,15 @@ button {
     padding: 8px 16px;
     border: none;
     border-radius: 5px;
-    background: #3498db;
-    color: white;
+    background: var(--primary-color);
+    color: var(--button-text-color);
     cursor: pointer;
     font-size: 14px;
-    transition: background 0.3s;
+    transition: background 0.3s, color 0.3s;
 }
 
 button:hover {
-    background: #2980b9;
+    background: var(--primary-hover-color);
 }
 
 button:active {
@@ -57,11 +97,11 @@ button:active {
 }
 
 #clearBtn {
-    background: #e74c3c;
+    background: var(--danger-color);
 }
 
 #clearBtn:hover {
-    background: #c0392b;
+    background: var(--danger-hover-color);
 }
 
 main {
@@ -71,7 +111,7 @@ main {
 #notepad {
     width: 100%;
     height: 400px;
-    border: 2px solid #ecf0f1;
+    border: 2px solid var(--textarea-border-color);
     border-radius: 5px;
     padding: 15px;
     font-size: 16px;
@@ -82,13 +122,13 @@ main {
 }
 
 #notepad:focus {
-    border-color: #3498db;
+    border-color: var(--primary-color);
 }
 
 footer {
-    background: #ecf0f1;
+    background: var(--footer-bg-color);
     padding: 15px 20px;
-    border-top: 1px solid #bdc3c7;
+    border-top: 1px solid var(--footer-border-color);
 }
 
 .status {
@@ -96,7 +136,7 @@ footer {
     justify-content: space-between;
     align-items: center;
     font-size: 14px;
-    color: #7f8c8d;
+    color: var(--muted-text-color);
 }
 
 #saveStatus {
@@ -104,11 +144,11 @@ footer {
 }
 
 .saved {
-    color: #27ae60 !important;
+    color: var(--saved-text-color) !important;
 }
 
 .unsaved {
-    color: #e74c3c !important;
+    color: var(--unsaved-text-color) !important;
 }
 
 @media (max-width: 600px) {
