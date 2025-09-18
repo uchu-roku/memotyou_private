@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>簡単メモ帳</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📝 簡単メモ帳</h1>
+            <div class="controls">
+                <button id="newBtn">新規</button>
+                <button id="saveBtn">保存</button>
+                <button id="loadBtn">読み込み</button>
+                <button id="clearBtn">クリア</button>
+            </div>
+        </header>
+        
+        <main>
+            <textarea id="notepad" placeholder="ここにメモを入力してください..."></textarea>
+        </main>
+        
+        <footer>
+            <div class="status">
+                <span id="charCount">0文字</span>
+                <span id="saveStatus"></span>
+            </div>
+        </footer>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
