@@ -1,0 +1,23 @@
+name: Build & Publish to Public Pages repo
+on:
+  push:
+    branches: [ main ]   # mainにマージされたら公開更新
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm ci
+      - run: npm run build
+      - name: Deploy to public repo
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          personal_token: ${{ secrets.PAGES_TOKEN }}
+          external_repository: uchu-roku/memotyou_public   # 公開用リポ
+          publish_branch: main
+          publish_dir: ./dist
+          force_orphan: true
