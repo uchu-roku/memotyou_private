@@ -1,9 +1,30 @@
+const THEME_STORAGE_KEY = 'notepad_theme';
+
+function readStoredTheme() {
+    try {
+        return localStorage.getItem(THEME_STORAGE_KEY);
+    } catch (error) {
+        console.warn('テーマ設定を取得できません: ストレージにアクセスできません。', error);
+        return null;
+    }
+}
+
+function writeStoredTheme(theme) {
+    try {
+        localStorage.setItem(THEME_STORAGE_KEY, theme);
+    } catch (error) {
+        console.warn('テーマ設定を保存できません: ストレージにアクセスできません。', error);
+    }
+}
+
 class SimpleNotepad {
     constructor() {
         this.notepad = document.getElementById('notepad');
         this.charCount = document.getElementById('charCount');
         this.saveStatus = document.getElementById('saveStatus');
-        
+        this.themeToggle = document.getElementById('themeToggle');
+
+        this.initTheme();
         this.initEventListeners();
         this.loadFromStorage();
         this.updateCharCount();
@@ -16,7 +37,10 @@ class SimpleNotepad {
         document.getElementById('saveBtn').addEventListener('click', () => this.saveNote());
         document.getElementById('loadBtn').addEventListener('click', () => this.loadNote());
         document.getElementById('clearBtn').addEventListener('click', () => this.clearNote());
-        
+        if (this.themeToggle) {
+            this.themeToggle.addEventListener('click', () => this.toggleTheme());
+        }
+
         // テキストエリアイベント
         this.notepad.addEventListener('input', () => {
             this.updateCharCount();
@@ -37,6 +61,32 @@ class SimpleNotepad {
                 this.autoSave();
             }
         }, 5000);
+    }
+
+    initTheme() {
+        const savedTheme = readStoredTheme();
+        const defaultTheme = document.body.getAttribute('data-theme') || 'light';
+        const theme = savedTheme || defaultTheme;
+
+        document.body.setAttribute('data-theme', theme);
+        this.updateThemeToggleLabel(theme);
+    }
+
+    toggleTheme() {
+        const currentTheme = document.body.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+        const nextTheme = currentTheme === 'light' ? 'dark' : 'light';
+
+        document.body.setAttribute('data-theme', nextTheme);
+        writeStoredTheme(nextTheme);
+        this.updateThemeToggleLabel(nextTheme);
+    }
+
+    updateThemeToggleLabel(theme) {
+        if (!this.themeToggle) return;
+
+        const isDark = theme === 'dark';
+        this.themeToggle.textContent = isDark ? 'ライトテーマ' : 'ダークテーマ';
+        this.themeToggle.setAttribute('aria-pressed', String(isDark));
     }
 
     newNote() {
