@@ -1,5 +1,13 @@
 const THEME_STORAGE_KEY = 'notepad_theme';
 
+function writeStoredTheme(theme) {
+    try {
+        localStorage.setItem(THEME_STORAGE_KEY, theme);
+    } catch (error) {
+        console.warn('テーマ設定を保存できません: ストレージにアクセスできません。', error);
+    }
+}
+
 class SimpleNotepad {
     constructor() {
         this.notepad = document.getElementById('notepad');
