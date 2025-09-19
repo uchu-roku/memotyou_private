@@ -1,14 +1,5 @@
 const THEME_STORAGE_KEY = 'notepad_theme';
 
-function readStoredTheme() {
-    try {
-        return localStorage.getItem(THEME_STORAGE_KEY);
-    } catch (error) {
-        console.warn('テーマ設定を取得できません: ストレージにアクセスできません。', error);
-        return null;
-    }
-}
-
 function writeStoredTheme(theme) {
     try {
         localStorage.setItem(THEME_STORAGE_KEY, theme);
@@ -64,7 +55,7 @@ class SimpleNotepad {
     }
 
     initTheme() {
-        const savedTheme = readStoredTheme();
+        const savedTheme = localStorage.getItem(THEME_STORAGE_KEY);
         const defaultTheme = document.body.getAttribute('data-theme') || 'light';
         const theme = savedTheme || defaultTheme;
 
@@ -77,7 +68,7 @@ class SimpleNotepad {
         const nextTheme = currentTheme === 'light' ? 'dark' : 'light';
 
         document.body.setAttribute('data-theme', nextTheme);
-        writeStoredTheme(nextTheme);
+        localStorage.setItem(THEME_STORAGE_KEY, nextTheme);
         this.updateThemeToggleLabel(nextTheme);
     }
 
