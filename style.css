@@ -5,11 +5,11 @@
 }
 
 /* === Theme tokens === */
-:root {
-    --bg: #ffffff;
-    --fg: #111111;
-    --muted: #666666;
-    --link: #0b66c3;
+:root{
+    --bg:#ffffff;
+    --fg:#111111;
+    --muted:#666666;
+    --link:#0b66c3;
     color-scheme: light;
 
     --bg-color: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -30,26 +30,13 @@
     --unsaved-text-color: #e74c3c;
 }
 
-html.dark {
-    --bg: #0b0b0f;
-    --fg: #e9e9ee;
-    --muted: #a0a3ab;
-    --link: #86b7ff;
+html.dark{
+    --bg:#0b0b0f;
+    --fg:#e9e9ee;
+    --muted:#a0a3ab;
+    --link:#86b7ff;
     color-scheme: dark;
-}
 
-html,
-body {
-    background: var(--bg);
-    color: var(--fg);
-    transition: background 0.15s, color 0.15s;
-}
-
-a {
-    color: var(--link);
-}
-
-body[data-theme="dark"] {
     --bg-color: linear-gradient(135deg, #141e30 0%, #243b55 100%);
     --text-color: #f5f7fa;
     --container-bg-color: #1f2933;
@@ -66,6 +53,17 @@ body[data-theme="dark"] {
     --muted-text-color: #94a3b8;
     --saved-text-color: #2dd4bf;
     --unsaved-text-color: #f87171;
+}
+
+html,
+body {
+    background: var(--bg);
+    color: var(--fg);
+    transition: background 0.15s, color 0.15s;
+}
+
+a {
+    color: var(--link);
 }
 
 body {

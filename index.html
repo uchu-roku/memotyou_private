@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
@@ -11,7 +11,8 @@
 
     <!-- 以降、既存のタイトルやメタ等 -->
     <title>簡単メモ帳</title>
-    <link rel="stylesheet" href="style.css">
+    <!-- GH Pagesでの404回避のため相対パスに統一 -->
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body data-theme="light">
     <div class="container">
@@ -37,7 +38,7 @@
             </div>
         </footer>
     </div>
-    
-    <script src="script.js"></script>
+    <!-- Viteがバンドル対象として拾えるように type="module" を付与 -->
+    <script type="module" src="./script.js"></script>
 </body>
 </html>
