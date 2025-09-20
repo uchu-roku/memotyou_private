@@ -98,17 +98,15 @@ class SimpleNotepad {
         const defaultTheme = document.body.getAttribute('data-theme') || 'light';
         const theme = readStoredTheme(defaultTheme);
 
-        document.body.setAttribute('data-theme', theme);
-        this.updateThemeToggleLabel(theme);
+        this.applyTheme(theme);
     }
 
     toggleTheme() {
         const currentTheme = document.body.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
         const nextTheme = currentTheme === 'light' ? 'dark' : 'light';
 
-        document.body.setAttribute('data-theme', nextTheme);
+        this.applyTheme(nextTheme);
         writeStoredTheme(nextTheme);
-        this.updateThemeToggleLabel(nextTheme);
     }
 
     updateThemeToggleLabel(theme) {
@@ -117,6 +115,12 @@ class SimpleNotepad {
         const isDark = theme === 'dark';
         this.themeToggle.textContent = isDark ? 'ライトテーマ' : 'ダークテーマ';
         this.themeToggle.setAttribute('aria-pressed', String(isDark));
+    }
+
+    applyTheme(theme) {
+        document.body.setAttribute('data-theme', theme);
+        document.documentElement.classList.toggle('dark', theme === 'dark');
+        this.updateThemeToggleLabel(theme);
     }
 
     notifyStorageIssue(message, { force = false } = {}) {

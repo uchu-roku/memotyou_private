@@ -4,7 +4,14 @@
     box-sizing: border-box;
 }
 
+/* === Theme tokens === */
 :root {
+    --bg: #ffffff;
+    --fg: #111111;
+    --muted: #666666;
+    --link: #0b66c3;
+    color-scheme: light;
+
     --bg-color: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     --text-color: #2c3e50;
     --container-bg-color: #ffffff;
@@ -21,6 +28,25 @@
     --muted-text-color: #7f8c8d;
     --saved-text-color: #27ae60;
     --unsaved-text-color: #e74c3c;
+}
+
+html.dark {
+    --bg: #0b0b0f;
+    --fg: #e9e9ee;
+    --muted: #a0a3ab;
+    --link: #86b7ff;
+    color-scheme: dark;
+}
+
+html,
+body {
+    background: var(--bg);
+    color: var(--fg);
+    transition: background 0.15s, color 0.15s;
+}
+
+a {
+    color: var(--link);
 }
 
 body[data-theme="dark"] {
