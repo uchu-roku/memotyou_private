@@ -1,0 +1,12 @@
+<!-- シンプルで軽量なSVGファビコン（16x16） -->
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="16" y2="16" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-opacity="0.9"/>
+      <stop offset="1" stop-opacity="0.9"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="16" height="16" fill="url(#g)"/>
+  <path d="M8 2.5l1.3 2.6 2.9.4-2.1 2 0.5 2.9L8 9.2 5.4 10.4l0.5-2.9-2.1-2 2.9-.4L8 2.5z"
+        fill="#fff" fill-opacity="0.95"/>
+</svg>
