@@ -1,4 +1,4 @@
-const THEME_STORAGE_KEY = 'theme';
+const THEME_STORAGE_KEY = 'notepad_theme';
 const NOTEPAD_CONTENT_KEY = 'notepad_content';
 const NOTEPAD_TIMESTAMP_KEY = 'notepad_timestamp';
 
@@ -95,16 +95,14 @@ class SimpleNotepad {
     }
 
     initTheme() {
-        const storedTheme = readStoredTheme(null);
-        const prefersDark = typeof window.matchMedia === 'function'
-            && window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const initialTheme = storedTheme || (prefersDark ? 'dark' : 'light');
+        const defaultTheme = document.body.getAttribute('data-theme') || 'light';
+        const theme = readStoredTheme(defaultTheme);
 
-        this.applyTheme(initialTheme);
+        this.applyTheme(theme);
     }
 
     toggleTheme() {
-        const currentTheme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+        const currentTheme = document.body.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
         const nextTheme = currentTheme === 'light' ? 'dark' : 'light';
 
         this.applyTheme(nextTheme);
@@ -264,7 +262,6 @@ class SimpleNotepad {
 }
 
 // アプリケーション初期化
-// DOM構築後に配線（type="module" なら本来 defer 相当ですが念のため）
 document.addEventListener('DOMContentLoaded', () => {
     new SimpleNotepad();
 });
